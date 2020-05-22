@@ -1,0 +1,593 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Document>
+<name>Flight Simulations</name>
+<atom:author>
+<atom:name>ASTRA High Altitude Balloon Flight Planner, University of Southampton</atom:name>
+</atom:author>
+<Style id="landingPin">
+<IconStyle>
+<scale>1.0</scale>
+<Icon>
+<href>http://maps.google.com/mapfiles/ms/micons/red-dot.png</href>
+</Icon>
+</IconStyle>
+</Style>
+<Style id="launchPin">
+<IconStyle>
+<scale>1.0</scale>
+<Icon>
+<href>http://maps.google.com/mapfiles/ms/micons/red-dot.png</href>
+</Icon>
+</IconStyle>
+</Style>
+<Style id="burstPin">
+<IconStyle>
+<scale>1.0</scale>
+<Icon>
+<href>http://maps.google.com/mapfiles/ms/micons/yellow-dot.png</href>
+</Icon>
+</IconStyle>
+</Style>
+<Style id="stratoLine">
+<LineStyle>
+<width>1.0</width>
+</LineStyle>
+</Style>
+<Placemark>
+<name>Simulation 1</name>
+<styleUrl>#stratoLine</styleUrl>
+<LineString>
+<coordinates>
+11.24727,50.35488,545.31183
+11.25122,50.35450,742.87874
+11.25636,50.35389,947.17601
+11.26201,50.35312,1152.55327
+11.26794,50.35221,1357.77186
+11.27397,50.35115,1563.71182
+11.27999,50.34993,1770.36461
+11.28585,50.34845,1977.71978
+11.29158,50.34658,2185.87981
+11.29730,50.34440,2394.81018
+11.30307,50.34198,2604.50274
+11.30889,50.33937,2814.99136
+11.31467,50.33661,3026.25951
+11.32032,50.33367,3182.68386
+11.32607,50.33095,2635.50042
+11.33176,50.32875,2100.24723
+11.33766,50.32731,1579.69979
+11.34358,50.32633,1072.24753
+11.34834,50.32575,576.58465
+11.35110,50.32555,92.41322
+</coordinates>
+<altitudeMode>absolute</altitudeMode>
+</LineString>
+</Placemark>
+<Placemark>
+<name>Simulation 2</name>
+<styleUrl>#stratoLine</styleUrl>
+<LineString>
+<coordinates>
+11.24727,50.35488,545.31183
+11.25006,50.35468,142.47716
+</coordinates>
+<altitudeMode>absolute</altitudeMode>
+</LineString>
+</Placemark>
+<Placemark>
+<name>Simulation 3</name>
+<styleUrl>#stratoLine</styleUrl>
+<LineString>
+<coordinates>
+11.24727,50.35488,545.31183
+11.25005,50.35469,111.11952
+</coordinates>
+<altitudeMode>absolute</altitudeMode>
+</LineString>
+</Placemark>
+<Placemark>
+<name>Simulation 4</name>
+<styleUrl>#stratoLine</styleUrl>
+<LineString>
+<coordinates>
+11.24727,50.35488,545.31183
+11.25119,50.35451,735.72606
+11.25629,50.35391,932.20385
+11.26191,50.35315,1129.14596
+11.26781,50.35226,1326.69747
+11.27384,50.35123,1524.87005
+11.27987,50.35006,1592.40715
+11.28587,50.34905,1241.18073
+11.29149,50.34827,894.27081
+11.29581,50.34782,552.92915
+11.29861,50.34762,217.12913
+</coordinates>
+<altitudeMode>absolute</altitudeMode>
+</LineString>
+</Placemark>
+<Placemark>
+<name>Simulation 5</name>
+<styleUrl>#stratoLine</styleUrl>
+<LineString>
+<coordinates>
+11.24727,50.35488,545.31183
+11.25117,50.35451,730.33414
+11.25624,50.35392,921.43194
+11.26183,50.35317,1113.15356
+11.26771,50.35229,1304.97239
+11.27373,50.35128,1497.40168
+11.27977,50.35012,1690.42329
+11.28571,50.34876,1884.07577
+11.29149,50.34709,2078.43442
+11.29718,50.34506,2273.44887
+11.30292,50.34279,2469.12731
+11.30871,50.34031,2665.49725
+11.31452,50.33765,2862.54204
+11.32028,50.33487,3060.26594
+11.32590,50.33190,3258.69546
+11.33143,50.32871,3457.81427
+11.33691,50.32531,3657.62239
+11.34237,50.32169,3858.15043
+11.34783,50.31789,4059.40474
+11.35323,50.31391,4261.37169
+11.35853,50.30980,4425.65274
+11.36391,50.30580,4023.28918
+11.36935,50.30216,3628.77620
+11.37484,50.29894,3240.33574
+11.38053,50.29614,2859.80979
+11.38622,50.29362,2486.54471
+11.39180,50.29153,2120.80822
+11.39762,50.28993,1761.38395
+11.40365,50.28871,1408.71173
+11.40952,50.28773,1061.88048
+11.41472,50.28701,720.82521
+11.41815,50.28669,384.98228
+11.42073,50.28651,54.40242
+</coordinates>
+<altitudeMode>absolute</altitudeMode>
+</LineString>
+</Placemark>
+<Placemark>
+<name>Simulation 6</name>
+<styleUrl>#stratoLine</styleUrl>
+<LineString>
+<coordinates>
+11.24727,50.35488,545.31183
+11.25005,50.35469,114.65928
+</coordinates>
+<altitudeMode>absolute</altitudeMode>
+</LineString>
+</Placemark>
+<Placemark>
+<name>Simulation 7</name>
+<styleUrl>#stratoLine</styleUrl>
+<LineString>
+<coordinates>
+11.24727,50.35488,545.31183
+11.25114,50.35452,721.69360
+11.25616,50.35394,903.48394
+11.26170,50.35320,1086.17835
+11.26754,50.35235,1268.64804
+11.27354,50.35136,1451.66668
+11.27958,50.35024,1635.24142
+11.28557,50.34896,1819.36190
+11.29140,50.34741,2004.10636
+11.29712,50.34552,2189.46461
+11.30282,50.34336,2375.42229
+11.30858,50.34098,2562.00275
+11.31439,50.33841,2749.19655
+11.32018,50.33571,2937.00484
+11.32590,50.33287,3125.45167
+11.33148,50.32983,3314.52314
+11.33699,50.32660,3504.21923
+11.34249,50.32332,3280.41458
+11.34818,50.32049,2842.70579
+11.35391,50.31800,2414.11654
+11.35956,50.31603,1992.92569
+11.36550,50.31464,1580.83607
+11.37147,50.31360,1177.02021
+11.37689,50.31283,780.95032
+11.38047,50.31249,392.00124
+11.38307,50.31232,0.00000
+</coordinates>
+<altitudeMode>absolute</altitudeMode>
+</LineString>
+</Placemark>
+<Placemark>
+<name>Simulation 8</name>
+<styleUrl>#stratoLine</styleUrl>
+<LineString>
+<coordinates>
+11.24727,50.35488,545.31183
+11.25130,50.35449,764.89064
+11.25655,50.35385,992.68027
+11.26230,50.35304,1221.00620
+11.26828,50.35207,1450.15223
+11.27433,50.35094,1680.15908
+11.28026,50.34956,1911.06278
+11.28602,50.34781,2142.93106
+11.29173,50.34566,2375.70784
+11.29752,50.34324,2609.44346
+11.30334,50.34061,2844.17897
+11.30910,50.33782,3079.85925
+11.31470,50.33480,3316.54082
+11.32020,50.33152,3554.24111
+11.32568,50.32798,3792.93878
+11.33115,50.32422,4032.66034
+11.33657,50.32026,4138.32390
+11.34202,50.31656,3625.27294
+11.34756,50.31341,3122.11932
+11.35330,50.31073,2631.95834
+11.35894,50.30851,2154.17228
+11.36478,50.30695,1688.07042
+11.37078,50.30585,1232.63905
+11.37626,50.30506,786.90906
+11.37977,50.30473,350.55548
+</coordinates>
+<altitudeMode>absolute</altitudeMode>
+</LineString>
+</Placemark>
+<Placemark>
+<name>Simulation 9</name>
+<styleUrl>#stratoLine</styleUrl>
+<LineString>
+<coordinates>
+11.24727,50.35488,545.31183
+11.25007,50.35468,162.24115
+</coordinates>
+<altitudeMode>absolute</altitudeMode>
+</LineString>
+</Placemark>
+<Placemark>
+<name>Simulation 10</name>
+<styleUrl>#stratoLine</styleUrl>
+<LineString>
+<coordinates>
+11.24727,50.35488,545.31183
+11.25112,50.35452,715.17969
+11.25609,50.35395,890.01622
+11.26159,50.35323,1065.71704
+11.26740,50.35239,1241.16578
+11.27338,50.35143,1417.11563
+11.27943,50.35034,1593.57754
+11.28544,50.34910,1770.54079
+11.29131,50.34764,1948.06782
+11.29707,50.34586,2126.16447
+11.30275,50.34378,2304.81198
+11.30848,50.34149,2484.03279
+11.31427,50.33900,2663.82212
+11.32007,50.33635,2844.17679
+11.32586,50.33379,2516.77298
+11.33153,50.33161,2160.27106
+11.33731,50.32996,1810.42147
+11.34333,50.32874,1466.67197
+11.34925,50.32777,1128.48069
+11.35465,50.32703,795.61440
+11.35847,50.32665,467.92101
+11.36112,50.32647,145.33399
+</coordinates>
+<altitudeMode>absolute</altitudeMode>
+</LineString>
+</Placemark>
+<Placemark>
+<name>Balloon Launch</name>
+<styleUrl>#launchPin</styleUrl>
+<Point>
+<coordinates>
+11.24727,50.35488,545.31183
+</coordinates>
+<altitudeMode>absolute</altitudeMode>
+</Point>
+</Placemark>
+<Placemark>
+<name>Balloon burst (Simulation 1)</name>
+<styleUrl>#burstPin</styleUrl>
+<description>Burst altitude: 3991 m.</description>
+<Point>
+<coordinates>
+11.31975,50.33397,3990.90840
+</coordinates>
+<altitudeMode>absolute</altitudeMode>
+</Point>
+</Placemark>
+<Placemark>
+<name>Payload landing (Simulation 1)</name>
+<styleUrl>#landingPin</styleUrl>
+<description>Flight time: 0 hours, 9 minutes and 33 seconds.</description>
+<Point>
+<coordinates>
+11.35136,50.32553,0.00000
+</coordinates>
+<altitudeMode>absolute</altitudeMode>
+</Point>
+</Placemark>
+<Placemark>
+<name>Balloon Launch</name>
+<styleUrl>#launchPin</styleUrl>
+<Point>
+<coordinates>
+11.24727,50.35488,545.31183
+</coordinates>
+<altitudeMode>absolute</altitudeMode>
+</Point>
+</Placemark>
+<Placemark>
+<name>Balloon burst (Simulation 2)</name>
+<styleUrl>#burstPin</styleUrl>
+<description>Burst altitude: 545 m.</description>
+<Point>
+<coordinates>
+11.24727,50.35488,545.31183
+</coordinates>
+<altitudeMode>absolute</altitudeMode>
+</Point>
+</Placemark>
+<Placemark>
+<name>Payload landing (Simulation 2)</name>
+<styleUrl>#landingPin</styleUrl>
+<description>Flight time: 0 hours, 0 minutes and 39 seconds.</description>
+<Point>
+<coordinates>
+11.25086,50.35463,0.00000
+</coordinates>
+<altitudeMode>absolute</altitudeMode>
+</Point>
+</Placemark>
+<Placemark>
+<name>Balloon Launch</name>
+<styleUrl>#launchPin</styleUrl>
+<Point>
+<coordinates>
+11.24727,50.35488,545.31183
+</coordinates>
+<altitudeMode>absolute</altitudeMode>
+</Point>
+</Placemark>
+<Placemark>
+<name>Balloon burst (Simulation 3)</name>
+<styleUrl>#burstPin</styleUrl>
+<description>Burst altitude: 545 m.</description>
+<Point>
+<coordinates>
+11.24727,50.35488,545.31183
+</coordinates>
+<altitudeMode>absolute</altitudeMode>
+</Point>
+</Placemark>
+<Placemark>
+<name>Payload landing (Simulation 3)</name>
+<styleUrl>#landingPin</styleUrl>
+<description>Flight time: 0 hours, 0 minutes and 36 seconds.</description>
+<Point>
+<coordinates>
+11.25059,50.35465,0.00000
+</coordinates>
+<altitudeMode>absolute</altitudeMode>
+</Point>
+</Placemark>
+<Placemark>
+<name>Balloon Launch</name>
+<styleUrl>#launchPin</styleUrl>
+<Point>
+<coordinates>
+11.24727,50.35488,545.31183
+</coordinates>
+<altitudeMode>absolute</altitudeMode>
+</Point>
+</Placemark>
+<Placemark>
+<name>Balloon burst (Simulation 4)</name>
+<styleUrl>#burstPin</styleUrl>
+<description>Burst altitude: 2758 m.</description>
+<Point>
+<coordinates>
+11.27806,50.35042,2757.88422
+</coordinates>
+<altitudeMode>absolute</altitudeMode>
+</Point>
+</Placemark>
+<Placemark>
+<name>Payload landing (Simulation 4)</name>
+<styleUrl>#landingPin</styleUrl>
+<description>Flight time: 0 hours, 5 minutes and 18 seconds.</description>
+<Point>
+<coordinates>
+11.30020,50.34751,0.00000
+</coordinates>
+<altitudeMode>absolute</altitudeMode>
+</Point>
+</Placemark>
+<Placemark>
+<name>Balloon Launch</name>
+<styleUrl>#launchPin</styleUrl>
+<Point>
+<coordinates>
+11.24727,50.35488,545.31183
+</coordinates>
+<altitudeMode>absolute</altitudeMode>
+</Point>
+</Placemark>
+<Placemark>
+<name>Balloon burst (Simulation 5)</name>
+<styleUrl>#burstPin</styleUrl>
+<description>Burst altitude: 5164 m.</description>
+<Point>
+<coordinates>
+11.35801,50.31021,5164.20074
+</coordinates>
+<altitudeMode>absolute</altitudeMode>
+</Point>
+</Placemark>
+<Placemark>
+<name>Payload landing (Simulation 5)</name>
+<styleUrl>#landingPin</styleUrl>
+<description>Flight time: 0 hours, 16 minutes and 3 seconds.</description>
+<Point>
+<coordinates>
+11.42098,50.28649,0.00000
+</coordinates>
+<altitudeMode>absolute</altitudeMode>
+</Point>
+</Placemark>
+<Placemark>
+<name>Balloon Launch</name>
+<styleUrl>#launchPin</styleUrl>
+<Point>
+<coordinates>
+11.24727,50.35488,545.31183
+</coordinates>
+<altitudeMode>absolute</altitudeMode>
+</Point>
+</Placemark>
+<Placemark>
+<name>Balloon burst (Simulation 6)</name>
+<styleUrl>#burstPin</styleUrl>
+<description>Burst altitude: 545 m.</description>
+<Point>
+<coordinates>
+11.24727,50.35488,545.31183
+</coordinates>
+<altitudeMode>absolute</altitudeMode>
+</Point>
+</Placemark>
+<Placemark>
+<name>Payload landing (Simulation 6)</name>
+<styleUrl>#landingPin</styleUrl>
+<description>Flight time: 0 hours, 0 minutes and 36 seconds.</description>
+<Point>
+<coordinates>
+11.25059,50.35465,0.00000
+</coordinates>
+<altitudeMode>absolute</altitudeMode>
+</Point>
+</Placemark>
+<Placemark>
+<name>Balloon Launch</name>
+<styleUrl>#launchPin</styleUrl>
+<Point>
+<coordinates>
+11.24727,50.35488,545.31183
+</coordinates>
+<altitudeMode>absolute</altitudeMode>
+</Point>
+</Placemark>
+<Placemark>
+<name>Balloon burst (Simulation 7)</name>
+<styleUrl>#burstPin</styleUrl>
+<description>Burst altitude: 4220 m.</description>
+<Point>
+<coordinates>
+11.33863,50.32558,4220.46923
+</coordinates>
+<altitudeMode>absolute</altitudeMode>
+</Point>
+</Placemark>
+<Placemark>
+<name>Payload landing (Simulation 7)</name>
+<styleUrl>#landingPin</styleUrl>
+<description>Flight time: 0 hours, 12 minutes and 30 seconds.</description>
+<Point>
+<coordinates>
+11.38307,50.31232,0.00000
+</coordinates>
+<altitudeMode>absolute</altitudeMode>
+</Point>
+</Placemark>
+<Placemark>
+<name>Balloon Launch</name>
+<styleUrl>#launchPin</styleUrl>
+<Point>
+<coordinates>
+11.24727,50.35488,545.31183
+</coordinates>
+<altitudeMode>absolute</altitudeMode>
+</Point>
+</Placemark>
+<Placemark>
+<name>Balloon burst (Simulation 8)</name>
+<styleUrl>#burstPin</styleUrl>
+<description>Burst altitude: 4933 m.</description>
+<Point>
+<coordinates>
+11.33548,50.32105,4933.10683
+</coordinates>
+<altitudeMode>absolute</altitudeMode>
+</Point>
+</Placemark>
+<Placemark>
+<name>Payload landing (Simulation 8)</name>
+<styleUrl>#landingPin</styleUrl>
+<description>Flight time: 0 hours, 12 minutes and 24 seconds.</description>
+<Point>
+<coordinates>
+11.38184,50.30459,0.00000
+</coordinates>
+<altitudeMode>absolute</altitudeMode>
+</Point>
+</Placemark>
+<Placemark>
+<name>Balloon Launch</name>
+<styleUrl>#launchPin</styleUrl>
+<Point>
+<coordinates>
+11.24727,50.35488,545.31183
+</coordinates>
+<altitudeMode>absolute</altitudeMode>
+</Point>
+</Placemark>
+<Placemark>
+<name>Balloon burst (Simulation 9)</name>
+<styleUrl>#burstPin</styleUrl>
+<description>Burst altitude: 545 m.</description>
+<Point>
+<coordinates>
+11.24727,50.35488,545.31183
+</coordinates>
+<altitudeMode>absolute</altitudeMode>
+</Point>
+</Placemark>
+<Placemark>
+<name>Payload landing (Simulation 9)</name>
+<styleUrl>#landingPin</styleUrl>
+<description>Flight time: 0 hours, 0 minutes and 42 seconds.</description>
+<Point>
+<coordinates>
+11.25114,50.35461,0.00000
+</coordinates>
+<altitudeMode>absolute</altitudeMode>
+</Point>
+</Placemark>
+<Placemark>
+<name>Balloon Launch</name>
+<styleUrl>#launchPin</styleUrl>
+<Point>
+<coordinates>
+11.24727,50.35488,545.31183
+</coordinates>
+<altitudeMode>absolute</altitudeMode>
+</Point>
+</Placemark>
+<Placemark>
+<name>Balloon burst (Simulation 10)</name>
+<styleUrl>#burstPin</styleUrl>
+<description>Burst altitude: 3494 m.</description>
+<Point>
+<coordinates>
+11.32007,50.33635,3493.75792
+</coordinates>
+<altitudeMode>absolute</altitudeMode>
+</Point>
+</Placemark>
+<Placemark>
+<name>Payload landing (Simulation 10)</name>
+<styleUrl>#landingPin</styleUrl>
+<description>Flight time: 0 hours, 10 minutes and 42 seconds.</description>
+<Point>
+<coordinates>
+11.36217,50.32640,0.00000
+</coordinates>
+<altitudeMode>absolute</altitudeMode>
+</Point>
+</Placemark>
+</Document>
+</kml>
