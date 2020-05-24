@@ -7,8 +7,8 @@ MAXLAYERNUMBER = 31
 
 href = [48165.21, 42772.97, 39671.37, 35876.543, 33472.727, 31007.893, 26436.203, 23853.016, 20643.412, 18544.133,
         16327.822, 13822.03, 12068.036, 10653.013, 9439.774, 8373.583, 7419.694, 6556.828, 5765.28, 5031.6753,
-        4349.6113, 3713.6584, 3117.0637, 2554.485, 2022.0889, 1520.427, 1050.7377, 823.6616, 601.1975, 382.89972,
-        168.58687]
+        4349.6113, 3713.6584, 3117.0637, 2554.485, 2022.0889, 1520.427, 1050.7377, 823.6616, 601.1975, 310.89972,
+        80.58687]
 pref = [100., 200., 300., 500., 700., 1000., 2000., 3000., 5000.,
         7000., 10000., 15000., 20000., 25000., 30000., 35000., 40000., 45000.,
         50000., 55000., 60000., 65000., 70000., 75000., 80000., 85000., 90000.,
@@ -113,7 +113,8 @@ def getTVPVariableRbf(f, lat0, lon0, h0, limitangle, limitinterpolateforlayer):
         Vu = f.variables['u-component_of_wind_isobaric'][0][bestlevel]
         Vv = f.variables['v-component_of_wind_isobaric'][0][bestlevel]
         P = pref[bestlevel]
-        return [Vv[iTR][jTR], Vu[iTR][jTR], T[iTR][jTR], P]
+        return [Vv[iTR][jTR], Vu[iTR][jTR], T[iTR][jTR], P,
+                f.variables["Geopotential_height_isobaric"][0][bestlevel - 1][iTR][jTR]]
 
     down, up = upanddownofthislayer(bestlevel, limit=limitinterpolateforlayer)
     if limitinterpolateforlayer == 0:
@@ -144,7 +145,8 @@ def getTVPVariableRbf(f, lat0, lon0, h0, limitangle, limitinterpolateforlayer):
     rbfvv = Rbf(x, y, h, vv, epsilon=1)
     rbfvu = Rbf(x, y, h, vu, epsilon=1)
     rbfp = Rbf(x, y, h, p, epsilon=1)
-    val = [rbfvv(lat0, lon0, h0).min(), rbfvu(lat0, lon0, h0).min(), rbft(lat0, lon0, h0).min(), rbfp(lat0, lon0, h0).min()]
+    val = [rbfvv(lat0, lon0, h0).min(), rbfvu(lat0, lon0, h0).min(), rbft(lat0, lon0, h0).min(),
+           rbfp(lat0, lon0, h0).min()]
     return val
 
 
@@ -166,7 +168,7 @@ def d9(var, lat0, lon0, h0, limitangle, limitinterpolateforlayer):
 
 
 @route("/allvalue/<lat0>/<lon0>/<h0>/<limitangle>/<limitinterpolateforlayer>")
-def ned( lat0, lon0, h0, limitangle, limitinterpolateforlayer):
+def ned(lat0, lon0, h0, limitangle, limitinterpolateforlayer):
     try:
         lat0, lon0, h0, limitangle, limitinterpolateforlayer = float(lat0), float(lon0), float(h0), int(
             limitangle), int(limitinterpolateforlayer)
