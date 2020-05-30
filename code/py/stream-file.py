@@ -19,3 +19,4 @@ with open('GFS_Global_0p5deg_ana_20200518_0600.grib2.nc', 'wb') as f:
             f.write(block)
     except KeyboardInterrupt:
         pass
+
