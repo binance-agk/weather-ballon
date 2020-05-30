@@ -1,8 +1,12 @@
+import sys
+
 import netCDF4
 import numpy as np
 from scipy.interpolate import Rbf
 
-f = netCDF4.Dataset('../GFS_Global_0p5deg_ana_20200518_0600.grib2_idm.nc')
+filename = sys.argv[1]
+
+f = netCDF4.Dataset(filename)
 MAXLAYERNUMBER = 31
 
 href = [48165.21, 42772.97, 39671.37, 35876.543, 33472.727, 31007.893, 26436.203, 23853.016, 20643.412, 18544.133,
