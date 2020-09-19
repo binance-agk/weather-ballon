@@ -3,10 +3,22 @@ import sys
 import netCDF4
 import numpy as np
 from scipy.interpolate import Rbf
+import os
 
-filename = sys.argv[1]
 
-f = netCDF4.Dataset(filename)
+files=[]
+
+for file in os.listdir("./"):
+    if file.endswith(".nc"):
+        print(len(files), file)
+        files.append(os.path.abspath(file))
+
+test2word = input("select index of your desired file(0|1|2|...) ")
+ind = int(test2word)
+
+print(ind)
+filename = files[ind]
+f = netCDF4.Dataset(str(filename))
 MAXLAYERNUMBER = 31
 
 href = [48165.21, 42772.97, 39671.37, 35876.543, 33472.727, 31007.893, 26436.203, 23853.016, 20643.412, 18544.133,
@@ -17,6 +29,7 @@ pref = [100., 200., 300., 500., 700., 1000., 2000., 3000., 5000.,
         7000., 10000., 15000., 20000., 25000., 30000., 35000., 40000., 45000.,
         50000., 55000., 60000., 65000., 70000., 75000., 80000., 85000., 90000.,
         92500., 95000., 97500., 100000.]
+
 
 
 def getclosest_ij(lats, lons, latpt, lonpt):
