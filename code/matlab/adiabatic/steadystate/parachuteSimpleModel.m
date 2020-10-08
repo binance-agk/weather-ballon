@@ -1,3 +1,5 @@
+clear x
+global lat0 lon0 h0 spheroid
 mpar=70/1000;
 dcan=   94/100;
 mpay=300/1000;
@@ -39,6 +41,10 @@ while abs(h)>40
         vxw=f(1);
         vyw=f(2);
         hnext=f(5);
+        figure(33)
+        plot(-x(k,3),x(k,6),'v')
+        ylabel('vz')
+        hold on
     else
         pamb=Pold;
         tamb=Told;

@@ -1,5 +1,5 @@
-tg=y;
-ff=iend;
+tg=x;
+ff=length(x);
 fileID = fopen('exp.txt','w');
 fprintf(fileID,'%6s %12s\n','x','exp(x)');
 for i= 1 :100:ff

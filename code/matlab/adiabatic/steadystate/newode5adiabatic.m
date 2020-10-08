@@ -15,9 +15,9 @@ endtime=15000;
 t=linspace(0,endtime,n);
 
 %% start point in lat0 long0 h0 refrence of NED sys
-global lat0 lon0 h0 mgas Mtot Mgros Vburst
-lat0=33;
-lon0=-55;
+global lat0 lon0 h0 mgas Mtot Mgros Vburst critic
+critic =false;
+
 h0=0;
 kt=0;
 x0=0;
@@ -30,7 +30,7 @@ mps=[250,250,250,250,250,250,250,250,250,1050,1050,1050,1050,250,250,1050,1050,1
 vol0s=[.83 .97 1.03 1.16 1.22 1.5 1.63 .76 2.01 2.99 3.33 3.89 4.97 1.76 2.01 2.99 3.89 4.97];
 dbs=[300 378 412 472 499 605 653 700 786 863 944 1054 1300 738 828 910 1079 1331]/100;
 
-i=18;
+i=length(dbs);
 
 mbalon=mbs(i);
 mpay=mps(i);
@@ -47,27 +47,28 @@ Mgros=mbalon+mpay;
 %%
 [y] = ode4(@vdp1,t,[x0 y0 z0 0 0 0]);
 %%
+
 plots
 
 %%
 
 %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 function dXdt = vdp1(t,x)
-global Vburst kt lat0 lon0 h0 terminate  spheroid rogasold  Pold Told Vold Vol0 hnext vxwold vywold mgas Mtot Mgros
+global Vburst kt lat0 lon0 h0 terminate  spheroid rogasold  Pold Told Vold Vol0 hnext...
+    vxwold vywold mgas Mtot Mgros critic
 import matlab.net.*
 import matlab.net.http.*
 r = RequestMessage;
-t
-if abs(x(3))<=1
-    x(3)=-1;
-end
+% 
+% if abs(x(3))<=1
+%     x(3)=-125;
+% end
 
 [lat,lon,h]=ned2geodetic(x(1),x(2),x(3),lat0 ,lon0,h0,spheroid);
 
-if abs(h)>hnext
+if abs(h)>=hnext
     r = RequestMessage;
     urll=strcat('http://localhost:8080/allvalue/',num2str(lat),'/',num2str(lon),'/',num2str(h),'/0/0');
     uri = URI(urll);
@@ -77,7 +78,11 @@ if abs(h)>hnext
     tamb=f(3);
     vxw=f(1);
     vyw=f(2);
-    hnext=f(5)
+    hnext=500+hnext
+    figure(33)
+    plot(-x(3),x(6),'v')
+    ylabel('vz')
+    hold on
 else
     pamb=Pold;
     tamb=Told;
@@ -153,11 +158,7 @@ dXdt(5)=Drag*vrely/Vrel/Mtot;
 dXdt(6)=(Mgros*9.81-B+Drag*vrelz/Vrel)/Mtot;
 
 %
-% figure(33)
-% plot(-x(3),vz,'v')
-% ylabel('vz')
 
-% hold on
 %
 % figure(323)
 % plot(-x(3),vx,'*')
@@ -213,7 +214,9 @@ if abs(x(3))>49e3
     return;
 end
 if vz>0
-    vz
+  
+    vz;
+    terminate =true;
 end
 
 
@@ -226,3 +229,5 @@ vywold=vyw;
 
 dXdt=dXdt';
 end
+
+

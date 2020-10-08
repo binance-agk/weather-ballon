@@ -1,6 +1,6 @@
 close all
-clc
-clear
+% clc
+% clear
 % while 1
 global   kt   spheroid  Pold Told Vold Vol0 hnext terminate iend
 terminate=false;
@@ -11,13 +11,13 @@ hnext=-1000;
 
 n=22000;
 iend=n;
-endtime=15000;
+endtime=25000;
 t=linspace(0,endtime,n);
 
 %% start point in lat0 long0 h0 refrence of NED sys
 global lat0 lon0 h0 mgas Mtot Mgros Vburst
-lat0=36
-lon0=-55;
+lat0=136;
+lon0=55;
 h0=0;
 kt=0;
 x0=0;
@@ -42,7 +42,8 @@ Mgros=mbalon+mpay;
 
 
 %%
-[y] = ode4(@vdp1,t,[x0 y0 z0 0 0 0]);
+% [y] = ode4(@vdp1,t,[x0 y0 z0 0 0 0]);
+[y] = ode4(@vdp1,t,y(end,:));
 %%
 plots
 
@@ -75,6 +76,10 @@ if abs(h-hnext)>500
     vxw=f(1);
     vyw=f(2);
     hnext=h;
+    figure(33)
+    plot(-x(3),x(6),'v')
+    ylabel('vz')
+    hold on
 else
     pamb=Pold;
     tamb=Told;
@@ -149,12 +154,9 @@ dXdt(4)=Drag*(vrelx)/Vrel/Mtot;
 dXdt(5)=Drag*vrely/Vrel/Mtot;
 dXdt(6)=(Mgros*9.81-B+Drag*vrelz/Vrel)/Mtot;
 
-%
-% figure(33)
-% plot(-x(3),vz,'v')
-% ylabel('vz')
-% hold on
-%
+
+
+
 % figure(323)
 % plot(-x(3),vx,'*')
 % ylabel('vx')
@@ -211,8 +213,6 @@ end
 if vz>0
     vz
 end
-
-h
 Pold=pamb;
 Vold=Vol;
 

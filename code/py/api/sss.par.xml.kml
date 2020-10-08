@@ -20,11 +20,11 @@
     </Style>
     <LookAt>
 
-      <longitude>145.330464</longitude>
-      <latitude>-44.60</latitude>
-      <range>35075</range>
-      <tilt>50.0</tilt>
-      <heading>10.9920856305692</heading>
+      <longitude>145.576703</longitude>
+      <latitude>-43.543900</latitude>
+      <range>222061.481</range>
+      <tilt>10</tilt>
+      <heading>50.0</heading>
     </LookAt>
     <Placemark>
       <name>Flight Path</name>

@@ -1,26 +1,5 @@
 function Y = ode4(odefun,tspan,y0,varargin)
 global terminate iend
-%ODE4  Solve differential equations with a non-adaptive method of order 4.
-%   Y = ODE4(ODEFUN,TSPAN,Y0) with TSPAN = [T1, T2, T3, ... TN] integrates 
-%   the system of differential equations y' = f(t,y) by stepping from T0 to 
-%   T1 to TN. Function ODEFUN(T,Y) must return f(t,y) in a column vector.
-%   The vector Y0 is the initial conditions at T0. Each row in the solution 
-%   array Y corresponds to a time specified in TSPAN.
-%
-%   Y = ODE4(ODEFUN,TSPAN,Y0,P1,P2...) passes the additional parameters 
-%   P1,P2... to the derivative function as ODEFUN(T,Y,P1,P2...). 
-%
-%   This is a non-adaptive solver. The step sequence is determined by TSPAN
-%   but the derivative function ODEFUN is evaluated multiple times per step.
-%   The solver implements the classical Runge-Kutta method of order 4.   
-%
-%   Example 
-%         tspan = 0:0.1:20;
-%         y = ode4(@vdp1,tspan,[2 0]);  
-%         plot(tspan,y(:,1));
-%     solves the system y' = vdp1(t,y) with a constant step size of 0.1, 
-%     and plots the first component of the solution.   
-%
 
 if ~isnumeric(tspan)
   error('TSPAN should be a vector of integration steps.');

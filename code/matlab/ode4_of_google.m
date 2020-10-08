@@ -107,5 +107,5 @@ dXdt(4)=Drag*(vrelx)/Vrel/Mtot;
 dXdt(5)=Drag*vrely/Vrel/Mtot;
 dXdt(6)=(0.04*9.81-B+Drag*vrelz/Vrel)/Mtot;
 
-dXdt=dXdt'
+dXdt=dXdt';
 end

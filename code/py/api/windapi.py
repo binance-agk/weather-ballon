@@ -9,14 +9,15 @@ import os
 files=[]
 
 for file in os.listdir("./"):
+    # print(file)
     if file.endswith(".nc"):
         print(len(files), file)
         files.append(os.path.abspath(file))
+if len(files)>0:
+    test2word = input("select index of your desired file(0|1|2|...) ")
+    ind = int(test2word)
+    print(ind)
 
-test2word = input("select index of your desired file(0|1|2|...) ")
-ind = int(test2word)
-
-print(ind)
 filename = files[ind]
 f = netCDF4.Dataset(str(filename))
 MAXLAYERNUMBER = 31

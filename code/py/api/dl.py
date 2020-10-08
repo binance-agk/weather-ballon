@@ -16,6 +16,8 @@ mytime = time(hour, 0)
 
 if (month) < 10:
     month = '0' + str(month)
+if (day) < 10:
+    day = '0' + str(day)
 
 if (hour) < 10:
     hour = '0' + str(hour)
