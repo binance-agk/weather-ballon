@@ -12,4 +12,4 @@ ax.contour(X, Y, Z, 10, lw=3, colors="k", linestyles="solid")
 plt.show()
 
 import pymap3d as pm
-pm.geodetic2ned(0,0,100010,0,0,100)
+print(pm.geodetic2ned(10,0,100010,0,0,100))

@@ -219,4 +219,4 @@ def d9(var, lat0, lon0, h0, limitangle, limitinterpolateforlayer):
 
 # getVariableRbf(f, 'v-component_of_wind_isobaric', lat0, lon0, 3000, 0,1)
 
-run(host='localhost', port=8080 ,quiet=True)
+run(host='localhost', port=8080 ,quiet=False)

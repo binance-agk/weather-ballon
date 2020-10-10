@@ -6,9 +6,9 @@ mpay=300/1000;
 decent=3.7;%FOR 300GR LOAD
 Apar=pi*dcan^2/4;
 rogr=1.225;
-
 h0=0;
 Cd0=2*9.81*(mpar+mpay)/(Apar*rogr*decent^2);
+Cd0=1.22/2;
 dt=1;
 x=[];
 x(1,1)= y(iend,1);%north pos
@@ -42,7 +42,7 @@ while abs(h)>40
         vyw=f(2);
         hnext=f(5);
         figure(33)
-        plot(-x(k,3),x(k,6),'v')
+        plot(-x(k,3),x(k,6),'*k')
         ylabel('vz')
         hold on
     else
@@ -58,7 +58,7 @@ while abs(h)>40
     
     
      k=k+1;
-     Cd=Cd0+rand*0.02*Cd0-0.01*rand*Cd0;
+    Cd=Cd0+rand*0.02*Cd0+1*rand*Cd0
      h
     vz=(2*9.81*(mpar+mpay)/(Apar*roamb*Cd))^0.5;
     

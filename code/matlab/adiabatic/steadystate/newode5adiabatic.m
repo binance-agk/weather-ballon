@@ -1,7 +1,7 @@
 close all
 clc
 clear
-% while 1
+
 global  kt   spheroid  Pold Told Vold Vol0 hnext terminate iend
 terminate=false;
 Pold =100e3;
@@ -73,14 +73,14 @@ if abs(h)>=hnext
     urll=strcat('http://localhost:8080/allvalue/',num2str(lat),'/',num2str(lon),'/',num2str(h),'/0/0');
     uri = URI(urll);
     resp = send(r,uri);
-    f=str2num(resp.Body.Data(1));
+    f=str2num(resp.Body.Data(1));   
     pamb=f(4);
     tamb=f(3);
     vxw=f(1);
     vyw=f(2);
     hnext=500+hnext
     figure(33)
-    plot(-x(3),x(6),'v')
+    plot(-x(3),x(6),'*k')
     ylabel('vz')
     hold on
 else
