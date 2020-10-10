@@ -1,1 +1,0 @@
-grib/NCEP/GFS/Global_0p5deg_ana/GFS_Global_0p5deg_ana_2020106_0000.grib2
