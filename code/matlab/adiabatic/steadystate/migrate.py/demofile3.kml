@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://earth.google.com/kml/2.1">
+<Document>
+    <name>Balloon Trajectory </name>
+<Style id="track">
+      <LineStyle>
+        <color>7f00ff00</color>
+      </LineStyle>
+      <PolyStyle>
+        <color>7f00ff00</color>
+      </PolyStyle>
+    </Style>
+<Style id="place">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>http://weather.uwyo.edu/icons/purple.gif</href>
+        </Icon>
+      </IconStyle>
+    </Style>    <LookAt>
+      <longitude>0.09640</longitude>
+      <latitude>52.21350</latitude>
+      <range>200000.000</range>
+      <tilt>50.0</tilt>
+      <heading>10.9920856305692</heading>
+    </LookAt>
+<Placemark>
+      <name>Flight Path</name>
+      <styleUrl>#track</styleUrl>
+      <LineString>
+        <tessellate>1</tessellate>
+        <extrude>1</extrude>
+        <altitudeMode>absolute</altitudeMode>
+        <coordinates>
+0.096400,52.213500,-0.000000
+0.095914,52.211856,4.226687
+0.095914,52.211856,4.226687
+        </coordinates>
+      </LineString>
+    </Placemark>
+<Placemark>
+<name>Balloon Launch</name>
+<description>Balloon Launch at 52.213500, 0.096400</description>
+<Point><coordinates> 0.096400,52.213500,0.000000</coordinates></Point>
+</Placemark>
+ <Placemark>
+<name>Balloon Burst</name>
+<description>Balloon Burst at 52.211856, 0.095914</description>
+<Point><coordinates> 0.095914,52.211856,4.226687</coordinates></Point>
+</Placemark>
+ <Placemark>
+<name>Balloon Landing</name>
+<description>Balloon Landing at 52.211856, 0.095914</description>
+<Point><coordinates> 0.095914,52.211856,4.226687</coordinates></Point>
+</Placemark>
+   </Document>
+</kml>

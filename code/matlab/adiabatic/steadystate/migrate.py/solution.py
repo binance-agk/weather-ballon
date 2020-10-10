@@ -3,20 +3,15 @@ from math import sqrt
 import numpy as np
 from matplotlib import markers
 
-hnext = 0
-
-
-#  test rk4
-def f(t, y):
-    p = (1 - y[0] ** 2) * y[1] - y[0]
-    return np.array([y[1], p])
-
 
 import matplotlib.pyplot as plt
 import math
 import pymap3d as pm
 import requests
 
+hnext = 0
+lat0 = 52.2135
+lon0 = 0.0964
 
 def rk4(f, t0, tend, y0, n):
     global terminate, iend
@@ -76,8 +71,6 @@ mgas = rogas * Vol0
 Mtot = mgas + mbalon + mpay
 Mgros = mbalon + mpay
 hnext = 0
-lat0 = -36
-lon0 = 136
 
 n = 10000
 iend = n
