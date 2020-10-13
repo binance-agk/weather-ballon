@@ -7,7 +7,6 @@ terminate=false;
 Pold =100e3;
 Told =100;
 spheroid = referenceEllipsoid('GRS 80');
-hnext=0;
 
 n=22000;
 iend=n;
@@ -78,7 +77,7 @@ if abs(h)>=hnext
     tamb=f(3);
     vxw=f(1);
     vyw=f(2);
-    hnext=500+hnext
+    hnext=1000+hnext
     figure(33)
     plot(-x(3),x(6),'*k')
     ylabel('vz')

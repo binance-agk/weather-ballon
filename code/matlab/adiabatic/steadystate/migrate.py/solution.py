@@ -9,9 +9,9 @@ import math
 import pymap3d as pm
 import requests
 
-hnext = 0
-lat0 = 52.2135
-lon0 = 0.0964
+hnext = -1
+lat0 = -36.2135
+lon0 = -52.0964
 
 def rk4(f, t0, tend, y0, n):
     global terminate, iend
@@ -70,9 +70,9 @@ rogas = 0.164
 mgas = rogas * Vol0
 Mtot = mgas + mbalon + mpay
 Mgros = mbalon + mpay
-hnext = 0
 
-n = 10000
+
+n = 22000
 iend = n
 endtime = 15000
 import timeit
@@ -200,14 +200,14 @@ h = x[0, 2]
 k = 0
 while abs(h) > 40:
     (lat, lon, h) = pm.ned2geodetic(x[k, 0], x[k, 1], x[k, 2], lat0, lon0, h0)
-    if (k - 1) % 50 == 0:
+    if (k - 1) % 100 == 0:
         resp = windapi.ned(lat, lon, h, 0, 0)
         resp = ast.literal_eval(resp)
         vxw = resp[0]
         vyw = resp[1]
         tamb = resp[2]
         pamb = resp[3]
-        print(pamb)
+        print(-x[k, 2])
     else:
         pamb = Pold
         tamb = Told
@@ -229,14 +229,14 @@ while abs(h) > 40:
     Told = tamb
     vxwold = vxw
     vywold = vyw
-    print(-x[k, 2])
+
 plt.plot(-x[0:k, 2], x[0:k, 5], 'r.')
 plt.show()
 
 
 def makeKML():
     global lat0, lon0, x, y
-    f = open("demofile3.kml", "w")
+    f = open("kml.kml", "w")
     f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
     f.write('<kml xmlns="http://earth.google.com/kml/2.1">\n')
     f.write('<Document>\n    <name>Balloon Trajectory </name>\n')
@@ -287,3 +287,6 @@ def makeKML():
 
 
 makeKML()
+
+import subprocess
+subprocess.run(["start kml.kml"])
