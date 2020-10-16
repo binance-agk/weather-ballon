@@ -10,8 +10,8 @@ import pymap3d as pm
 import requests
 
 hnext = -1
-lat0 = -36.2135
-lon0 = -52.0964
+lat0 = 12
+lon0 = 122
 
 def rk4(f, t0, tend, y0, n):
     global terminate, iend
@@ -60,6 +60,7 @@ dbs = [300, 378, 412, 472, 499, 605, 653, 700, 786, 863, 944, 1054, 1300, 738, 8
 dbs = list(map(lambda x: x / 100.0, dbs))
 
 i = len(dbs) - 1
+i=10
 mbalon = mbs[i]
 mpay = mps[i]
 Vol0 = vol0s[i]
@@ -132,9 +133,9 @@ def dXdt(t, x):
     visco = 1.81 * 10 ** -5
     Re = roamb * Vrel * L / visco
     cd = 4.808 * (math.log(Re)) ** 2 / 100 - 1.406 * math.log(Re) + 10.490
-    Drag = 0.5 * ro * (Vrel) ** 2 * cd * A
     if cd > 0.9:
         cd = 0.85
+    Drag = 0.5 * ro * (Vrel) ** 2 * cd * A
 
     dxdt = [0, 0, 0, 0, 0, 0]
     dxdt[0] = vx
@@ -145,7 +146,7 @@ def dXdt(t, x):
     dxdt[5] = (Mgros * 9.81 - B + Drag * vrelz / Vrel) / Mtot
 
     if Vol >= Vburst:
-        print(Vol)
+        print('vol ', Vol)
         terminate = True
         return np.array([dxdt[0], dxdt[1], dxdt[2], dxdt[3], dxdt[4], dxdt[5]])
 

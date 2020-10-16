@@ -16,6 +16,11 @@
 		}(document));
 	</script>
 	<meta name="apple-mobile-web-app-capable" content="yes" />
+
+	<script src="https://api.mapbox.com/mapbox-gl-js/v1.6.1/mapbox-gl.js"></script>
+	<link href="https://api.mapbox.com/mapbox-gl-js/v1.6.1/mapbox-gl.css" rel="stylesheet" />
+
+
 	<link rel="stylesheet" href="css/strato-theme/jquery-ui-1.9.1.custom.min.css" />
 	<link rel="stylesheet" href="css/strato.css" />
 	<link rel="shortcut icon" href="favicon.ico" />
@@ -56,9 +61,43 @@
 		});
 	</script>
 
+<style>
+	body {
+		margin: 0;
+		padding: 0;
+	}
+
+	#map {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		width: 100%;
+	}
+
+	#mapinfo {
+		display: block;
+		position: relative;
+		margin: 0px auto;
+		width: 50%;
+		padding: 10px;
+		border: none;
+		border-radius: 3px;
+		font-size: 12px;
+		text-align: center;
+		color: #222;
+		background: inherit;
+	}
+</style>
 </head>
 
 <body>
+	<script
+		src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.min.js"></script>
+	<link rel="stylesheet"
+		href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.css"
+		type="text/css" />
+
+
 	<div id="wrapper">
 
 		<div id="top_bar" class="shadow">
@@ -262,9 +301,12 @@
 				<div class="animate hidden" id="launchSite_instruction">Click on the map to set the launch site</div>
 				<div class="animate hidden" id="click_instruction">Hint: you can click on any marker to get extra
 					information</div>
-				<div id="map_area" class="">
-					<div id="map_msg">The world map is loading...</div>
-				</div>
+					<div id="map"></div>
+					<pre id="mapinfo"></pre>
+	
+					<div id="map_area" class="" style="display: none;">
+						<div id="map_msg">The world map is loading...</div>
+					</div>
 			</div>
 
 			<div id="options_menu" class="animate hidden" onmouseover=" $(this).height(190); "
@@ -374,6 +416,124 @@
 
 		</div>
 	</div>
+
+	<script>
+		mapboxgl.accessToken = 'pk.eyJ1IjoiYmVueWFtaW5paWkiLCJhIjoiY2sxd2YxemV4MDEyMDNucnc5YzZvemI1NyJ9.KAoiEdXjvwpjQ71uMzkR7A';
+		mapboxgl.setRTLTextPlugin(
+			'https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-rtl-text/v0.2.3/mapbox-gl-rtl-text.js',
+			null,
+			true // Lazy load the plugin
+		);
+		var map = new mapboxgl.Map({
+			container: 'map',
+			style: 'mapbox://styles/mapbox/streets-v11',
+			center: [51.34, 35.69],
+			zoom: 8
+		});
+		var map2=map;	
+		var marker = new mapboxgl.Marker()
+			.setLngLat([51.34, 35.69])
+
+		// The `click` event is an example of a `MapMouseEvent`.
+		// Set up an event listener on the map.
+
+		map.on('click', function (e) {
+			// The event object (e) contains information like the
+			// coordinates of the point on the map that was clicked.
+			marker.remove()
+			marker = new mapboxgl.Marker()
+				.setLngLat([e.lngLat.lng, e.lngLat.lat])
+				.addTo(this);
+
+			$('#launchSite_lat').val(e.lngLat.lat);
+			$('#launchSite_lon').val(e.lngLat.lng);
+			updateCoords();
+
+
+			console.log('A click event has occurred at ' + e.lngLat.lat);
+		});
+
+		map.on('mousemove', function (e) {
+			document.getElementById('mapinfo').innerHTML =
+				// e.point is the x, y coordinates of the mousemove event relative
+				// to the top-left corner of the map
+				// JSON.stringify(e.point) +
+				// '<br />' +
+				// e.lngLat is the longitude, latitude geographical position of the event
+				JSON.stringify(e.lngLat.wrap());
+		});
+
+
+		/* given a query in the form "lng, lat" or "lat, lng" returns the matching
+		* geographic coordinate(s) as search results in carmen geojson format,
+		* https://github.com/mapbox/carmen/blob/master/carmen-geojson.md
+		*/
+		var coordinatesGeocoder = function (query) {
+			// match anything which looks like a decimal degrees coordinate pair
+			var matches = query.match(
+				/^[ ]*(?:Lat: )?(-?\d+\.?\d*)[, ]+(?:Lng: )?(-?\d+\.?\d*)[ ]*$/i
+			);
+			if (!matches) {
+				return null;
+			}
+
+			function coordinateFeature(lng, lat) {
+				marker.remove()
+				$('#launchSite_lat').val(lat);
+				$('#launchSite_lon').val(lng);
+				updateCoords();
+				return {
+					center: [lng, lat],
+					geometry: {
+						type: 'Point',
+						coordinates: [lng, lat]
+					},
+					place_name: 'Lat: ' + lat + ' Lng: ' + lng,
+					place_type: ['coordinate'],
+					properties: {},
+					type: 'Feature'
+				};
+			}
+
+			var coord1 = Number(matches[1]);
+			var coord2 = Number(matches[2]);
+			var geocodes = [];
+
+			if (coord1 < -90 || coord1 > 90) {
+				// must be lng, lat
+				geocodes.push(coordinateFeature(coord1, coord2));
+			}
+
+			if (coord2 < -90 || coord2 > 90) {
+				// must be lat, lng
+				geocodes.push(coordinateFeature(coord2, coord1));
+			}
+
+			if (geocodes.length === 0) {
+				// else could be either lng, lat or lat, lng
+				geocodes.push(coordinateFeature(coord1, coord2));
+				geocodes.push(coordinateFeature(coord2, coord1));
+			}
+
+
+			return geocodes;
+		};
+
+		map.addControl(
+			new MapboxGeocoder({
+				accessToken: mapboxgl.accessToken,
+				localGeocoder: coordinatesGeocoder,
+				zoom: 4,
+				placeholder: 'Try: -40, 170',
+				mapboxgl: mapboxgl
+			})
+		);
+
+
+	</script>
+
+
+
 </body>
 
 </html>
