@@ -369,55 +369,16 @@ $(document).ready(function () {
                 if (json.status == 'ok') {
                     $('#simRunning_caption').html('✅ داده هواشناسی قبلا بارگزاری شده...');
                     $('#simRunning_progressBar').progressbar("value", 100);
-                    setTimeout(() => {
-                    }, 1000)
 
                     socket.emit('simulate', {data: json});
 
                     $('#simRunning_caption').html('شروغ شبیه ساز پرواز...');
                     $('#simRunning_progressBar').progressbar("value", 100);
 
-                    socket.on('balloonEmitter', function (msg) {
-                        console.warn(msg)
-                        $('#simRunning_caption').html(msg.data);
-                        $('#simRunning_progressBar').progressbar("value", Number(100));
-                    });
-
-                    socket.on('parachuteEmitter', function (msg) {
-                        console.warn(msg)
-                        $('#simRunning_caption').html(msg.data);
-                        $('#simRunning_progressBar').progressbar("value", Number(100));
-                    });
-
-                    socket.on('flightdoneemmiter', function (msg) {
-                        console.warn(msg)
-                        $('#simRunning_caption').html(msg.data);
-                        $('#simRunning_progressBar').progressbar("value", Number(100));
-                        $('#simRunning').removeClass('running');
-                        $('#simRunning').addClass('hidden');
-
-                    });
-
-
                 } else if (json.status == '9999') {
-                    $('#simRunning_caption').html('starting weather data downloading...');
+                    $('#simRunning_caption').html('شروع بارگزاری داده موردنظر');
                     $('#simRunning_progressBar').progressbar("value", 0);
-
                     socket.emit('dlevent', {data: json.date});
-
-                    socket.on('progressEmitter', function (msg) {
-                        let per = (msg.data * 100 / 126000).toFixed(1)
-                        console.warn(msg)
-                        $('#simRunning_caption').html(per + '%  data downloaded...');
-                        $('#simRunning_progressBar').progressbar("value", Number(per));
-                    });
-
-                    socket.on('doneEmitter', function (msg) {
-                        $('#simRunning_caption').html('weather data downloaded ✅');
-                        $('#simRunning_progressBar').progressbar("value", 100);
-
-                    });
-
                 }
                 console.warn(json)
 
@@ -455,6 +416,66 @@ $(document).ready(function () {
         }
     });
     // *********************************** //
+
+
+    socket.on('balloonEmitter', function (msg) {
+        console.warn(msg)
+        $('#simRunning_caption').html(msg.data);
+        $('#simRunning_progressBar').progressbar("value", Number(100));
+    });
+    socket.on('parachuteEmitter', function (msg) {
+        console.warn(msg)
+        $('#simRunning_caption').html(msg.data + "ارتفاع پروازی: ");
+        $('#simRunning_progressBar').progressbar("value", Number(100));
+    });
+    socket.on('flightdoneemmiter', function (msg) {
+        console.warn(msg)
+        $('#simRunning_caption').html(msg.data);
+        $('#simRunning_progressBar').progressbar("value", Number(100));
+        $('#simRunning').removeClass('running');
+        $('#simRunning').addClass('hidden');
+        // Show view options
+        $('#options_menu').removeClass('hidden');
+    });
+
+    socket.on('anyerroremmiter', function (msg) {
+        console.warn(msg)
+        $('#simRunning_caption').html(msg.data);
+        $('#simRunning_progressBar').progressbar("value", Number(100));
+        $('#options_menu').addClass('hidden');
+        setTimeout(() => {
+            $('#simRunning').removeClass('running');
+            $('#simRunning').addClass('hidden');
+        }, 1000)
+    });
+
+
+    socket.on('progressEmitter', function (msg) {
+        let per = (msg.data * 100 / 126000).toFixed(1)
+        console.warn(msg)
+        $('#simRunning_caption').html('%  بارگزاری شده...' + per);
+        $('#simRunning_progressBar').progressbar("value", Number(per));
+    });
+    socket.on('errorEmitter', function (msg) {
+        $('#simRunning_caption').html(msg.data);
+        $('#simRunning_progressBar').progressbar("value", Number(0));
+        setTimeout(() => {
+            $('#simRunning').removeClass('running');
+            $('#simRunning').addClass('hidden');
+        }, 2100)
+    });
+
+    socket.on('doneEmitter', function (msg) {
+        $('#simRunning_caption').html('weather data downloaded ✅');
+        $('#simRunning_progressBar').progressbar("value", 100);
+        setTimeout(() => {
+            $('#simRunning').removeClass('running');
+            $('#simRunning').addClass('hidden');
+        }, 2100)
+
+        // socket.emit('simulate', {data: json});
+
+    });
 
 
     // Event handler to validate form every time any information changes
@@ -519,7 +540,7 @@ $(document).ready(function () {
 
     // Event handler to let the user download KML file
     $('#export_kml').click(function () {
-        window.location.href = "get_data.php?f=kml";
+        window.location.href = "/lmk.kml";
     });
 
     // Event handler to switch view to heat map

@@ -5,6 +5,7 @@
     <meta name="misapplication-tap-highlight" content="no"/>
     <meta name="msapplication-TileImage" content="apple-touch-icon.png">
     <meta name="msapplication-TileColor" content="#47619e">
+    <link href="/manifest.json" crossorigin="use-credentials" rel="manifest">
     <script type="text/javascript">
         (function (doc) {
             var viewport = document.getElementById('viewport');
@@ -18,6 +19,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <script src="https://api.mapbox.com/mapbox-gl-js/v1.6.1/mapbox-gl.js"></script>
     <link href="https://api.mapbox.com/mapbox-gl-js/v1.6.1/mapbox-gl.css" rel="stylesheet"/>
+    <script src='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.3.1/leaflet-omnivore.min.js'></script>
 
     <link rel="stylesheet" href="css/strato-theme/jquery-ui-1.9.1.custom.min.css"/>
     <link rel="stylesheet" href="css/strato.css"/>
@@ -98,8 +100,8 @@
 <div id="wrapper">
 
     <div id="top_bar" class="shadow">
-        <div id="top_bar_title"><a target="_blank" style="color:#CCDDFF;">شبیه ساز پرواز بالن و آب و
-            هوا</a>&nbsp;&nbsp;&nbsp;کاستومایز شده برای ابولی
+        <div id="top_bar_title"><a target="_blank" style="color:#CCDDFF;">شبیه ساز پرواز بالن هواشناسی 
+            </a>ثاقب   
         </div>
     </div>
 
@@ -311,7 +313,7 @@
             </div>
         </div>
 
-        <div id="options_menu" class="animate hidden" onmouseover=" $(this).height(190); "
+        <div id="options_menu" class="animate hidden" onmouseover=" $(this).height(228); "
              onmouseout=" $(this).height(28); ">
             <div style="margin-top: 5px; cursor: default;">Export and view options</div>
             <div class="menu_section">Show on map:</div>
@@ -435,7 +437,7 @@
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v11',
         center: [51.34, 35.69],
-        zoom: 8
+        zoom: 5
     });
     var map2 = map;
     var marker = new mapboxgl.Marker()

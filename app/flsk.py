@@ -9,7 +9,7 @@ from solution.solution import Solution
 
 app = Flask(__name__, static_url_path='')
 CORS(app)
-app.config['SECRET_KEY'] = 'secret!'
+app.config['SECRET_KEY'] = 'secret1!'
 socketio = SocketIO(app)
 print(socketio)
 
@@ -48,6 +48,9 @@ def ll(message):
 
 @socketio.on('simulate')
 def simulate(message):
+    def anyerroremmiter(msg):
+        return emit('anyerroremmiter', {'data': msg})
+
     def balloonEmitter(msg):
         return emit('balloonEmitter', {'data': msg})
 
@@ -74,12 +77,13 @@ def simulate(message):
     filename = "data/GFS_Global_0p5deg_ana_{0}{1}{2}_{3}00.grib2.nc" \
         .format(date['year'], date['month'], date['day'], date['hour'])
 
-    sol = Solution(balloonEmitter, parachuteEmitter, flightdoneemmitee, lat, lon, date['day'], date['month'],
-                   date['year'], date['hour'],
+    sol = Solution(anyerroremmiter, balloonEmitter, parachuteEmitter, flightdoneemmitee, lat, lon, date['day'],
+                   date['month'], date['year'], date['hour'],
                    0, filename, gasType, blntype, payloadweight, chutetype, nozzlelift, 22000, 15000)
 
     sol.solveballoonpart()
     sol.solveparachutepart()
+    sol.exportKML()
 
 
 @app.route("/2", methods=['GET', 'POST'])
@@ -181,3 +185,13 @@ def send_js(path):
 @app.route('/favicon.ico')
 def send_icon():
     return send_from_directory('', 'favicon.ico')
+
+
+@app.route('/lmk.kml')
+def send_kml():
+    return send_from_directory('', 'lmk.kml', cache_timeout=0)
+
+
+@app.route('/manifest.json')
+def manifes():
+    return send_from_directory('', 'manifest.json', cache_timeout=0)

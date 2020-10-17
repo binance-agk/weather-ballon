@@ -25,18 +25,24 @@ class Dl(object):
               "/GFS_Global_0p5deg_ana_{0}{1}{2}_{3}00.grib2" \
             .format(self.year, self.month, self.day, self.hour)
 
-        r = requests.get(url, params=params, stream=True)
+        resp = requests.get(url, params=params, stream=True)
 
-        if r.status_code != 200:
+        if resp.status_code == 404:
+            errorEmitter('data not found try other time')
+            print(resp.status_code)
+            return
+        elif resp.status_code != 200:
             errorEmitter('something is wrong... try again ')
+            return
 
         rem = 0
         size = 0
+        print(resp.url)
 
         with open('data/GFS_Global_0p5deg_ana_{0}{1}{2}_{3}00.grib2.nc'.format(self.year, self.month, self.day,
                                                                                self.hour), 'wb') as f:
             try:
-                for block in r.iter_content(3020):
+                for block in resp.iter_content(3020):
                     f.write(block)
                     f.flush()
                     size = size + 3020
@@ -55,4 +61,6 @@ class Dl(object):
 
 if __name__ == '__main__':
     def emmiter(msg): return print(msg)
+
+
     Dl(2020, 10, '01', '06').dl(emmiter, emmiter, emmiter)

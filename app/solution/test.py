@@ -1,4 +1,7 @@
 #  test rk4
+from pymap3d import numpy as np
+
+
 def f(t, y):
     p = (1 - y[0] ** 2) * y[1] - y[0]
     return np.array([y[1], p])
@@ -10,3 +13,7 @@ bname = (
     'TA 2000', 'TA 3000', 'TX 800', 'TX 1000', 'TX 1200', 'TX 2000', 'TX 3000')
 
 print(bname.index(('TA 200')))
+
+h=1212.12
+print(f".{h:.1f}ترکیدن بالن در ارتفاع ")
+print(f"{h:.1f}ترکیدن بالن در ارتفاع ")

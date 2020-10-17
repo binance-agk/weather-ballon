@@ -124,8 +124,8 @@ a {
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border: solid 1px #ffffff;
-  height: 16px;
-  width: 50px;
+  height: 20px;
+  width: 85px;
 }
 
 .option_content_inputText:focus {
@@ -681,7 +681,7 @@ a {
 
 #options_menu {
   position: absolute;
-  right: 242px;
+  left: 242px;
   top: -4px;
   background-color: #000000; /* Fallback for IE */
   background-color: rgba(0, 0, 0, 0.7);
@@ -721,7 +721,7 @@ a {
 
 #custom_marker {
   position: absolute;
-  left: 120px;
+  left: 100px;
   top: -4px;
   background-color: #000000; /* Fallback for IE */
   background-color: rgba(0, 0, 0, 0.7);
