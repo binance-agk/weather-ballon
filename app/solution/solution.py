@@ -296,7 +296,7 @@ class Solution(object):
             F'{lonb:.6f}</description>\n<Point><coordinates> {lonb:.6f},{latb:.6f},{hb:.6f}</coordinates></Point>\n'
             F'</Placemark>\n ')
         f.write(
-            F'<Placemark>\n<name>Balloon Landing</name>\n<description>Balloon Landing at {lat:.6f}, '
+            F'<Placemark>\n<name>Balloon Landing</name>\n<description>Landing at {lat:.6f}, '
             F'{lon:.6f}</description>\n<Point><coordinates> {lon:.6f},{lat:.6f},{h:.6f}</coordinates></Point>\n'
             F'</Placemark>\n ')
         f.write('  </Document>\n</kml>\n')
