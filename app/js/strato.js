@@ -425,7 +425,7 @@ $(document).ready(function () {
     });
     socket.on('parachuteEmitter', function (msg) {
         console.warn(msg)
-        $('#simRunning_caption').html(msg.data + "ارتفاع پروازی: ");
+        $('#simRunning_caption').html(msg.data + " m :ارتفاع پروازی ");
         $('#simRunning_progressBar').progressbar("value", Number(100));
     });
     socket.on('flightdoneemmiter', function (msg) {

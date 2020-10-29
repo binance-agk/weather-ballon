@@ -4,3 +4,4 @@
 **/*.zip
 **/*.pdf
 **/*.grib2
+**/__pycache__

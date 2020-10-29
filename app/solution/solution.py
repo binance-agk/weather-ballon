@@ -88,7 +88,7 @@ class Solution(object):
             pamb = resp[3]
             self.hnext = 1000 + self.hnext
             # print(x[2])
-            self.balloonemmiter(f" ارتفاع بالن  {h:.2f} m")
+            self.balloonemmiter(f" {h:.2f}m :ارتفاع بالن ")
         else:
             pamb = self.Pold
             tamb = self.Told

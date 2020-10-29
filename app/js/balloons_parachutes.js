@@ -26,28 +26,32 @@ var balloons = {
     	"TA1500" : "TA1500 (1.5kg)",
     	"TA2000" : "TA2000 (2kg)",
     	"TA3000" : "TA3000 (3kg)",
-	"TA4000" : "TA4000 (4kg)"
+    	"TX800" : "TX800 (800g)",
+    	"TX1000" : "TX1000 (1kg)",
+    	"TX1200" : "TX1200 (1.2kg)",
+    	"TX2000" : "TX2000 (2kg)",
+    	"TX3000" : "TA3000 (3kg)",
      },
-     "Hwoyee" : {
-    	"HW10" : "Hwoyee 10g",
-    	"HW30" : "Hwoyee 30g",
-    	"HW50" : "Hwoyee 50g",
-    	"HW100" : "Hwoyee 100g",
-    	"HW200" : "Hwoyee 200g",
-    	"HW300" : "Hwoyee 300g",
-    	"HW350" : "Hwoyee 350g",
-    	"HW400" : "Hwoyee 400g",
-    	"HW500" : "Hwoyee 500g",
-    	"HW600" : "Hwoyee 600g",
-    	"HW750" : "Hwoyee 750g",
-   		"HW800" : "Hwoyee 800g",
-    	"HW950" : "Hwoyee 950g",
-    	"HW1000" : "Hwoyee 1kg",
-    	"HW1200" : "Hwoyee 1.2kg",
-    	"HW1500" : "Hwoyee 1.5kg",
-    	"HW1600" : "Hwoyee 1.6kg",
-    	"HW2000" : "Hwoyee 2kg"
-    }
+    //  "Hwoyee" : {
+    // 	"HW10" : "Hwoyee 10g",
+    // 	"HW30" : "Hwoyee 30g",
+    // 	"HW50" : "Hwoyee 50g",
+    // 	"HW100" : "Hwoyee 100g",
+    // 	"HW200" : "Hwoyee 200g",
+    // 	"HW300" : "Hwoyee 300g",
+    // 	"HW350" : "Hwoyee 350g",
+    // 	"HW400" : "Hwoyee 400g",
+    // 	"HW500" : "Hwoyee 500g",
+    // 	"HW600" : "Hwoyee 600g",
+    // 	"HW750" : "Hwoyee 750g",
+   	// 	"HW800" : "Hwoyee 800g",
+    // 	"HW950" : "Hwoyee 950g",
+    // 	"HW1000" : "Hwoyee 1kg",
+    // 	"HW1200" : "Hwoyee 1.2kg",
+    // 	"HW1500" : "Hwoyee 1.5kg",
+    // 	"HW1600" : "Hwoyee 1.6kg",
+    // 	"HW2000" : "Hwoyee 2kg"
+    // }
 }
 
 var parachutes = {
