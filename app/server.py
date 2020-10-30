@@ -6,11 +6,14 @@ from flask_socketio import SocketIO, emit
 
 from solution.downlaodapi import Dl
 from solution.solution import Solution
+import datetime
 
 app = Flask(__name__, static_url_path='')
 CORS(app)
 app.config['SECRET_KEY'] = 'secret1!'
 socketio = SocketIO(app)
+socketio.init_app(app, cors_allowed_origins="*")
+
 
 @socketio.on('connect')
 def e():
@@ -121,6 +124,11 @@ def helloWorld():
                          'nozzlelift': nozzlelift, 'payloadweight': payloadweight, 'chutetype': chutetype}
                 }
     else:
+        xdate = datetime.datetime.now()
+        if xdate.month == int(month) and xdate.day == int(day):
+            print('yes same')
+        print(xdate)
+
         return {'status': '9999', 'description': 'file not exists,start request download',
                 'date': {'year': year, 'month': month, 'day': day, 'hour': hour}}
 
