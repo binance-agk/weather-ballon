@@ -51,8 +51,8 @@ class Dl(object):
                         progressEmitter(size // 1024)  # KB receiving
                         # print(, "KB receiving ...")
                     rem = rem + 1
-            except KeyboardInterrupt:
-                errorEmitter(KeyboardInterrupt.__str__())
+            except Exception:
+                errorEmitter(Exception.__str__())
                 pass
 
         doneEmitter('done')

@@ -130,7 +130,7 @@ def getTVPVariableRbf(f, lat0, lon0, h0, limitangle, limitinterpolateforlayer):
         Vu = f.variables['u-component_of_wind_isobaric'][0][bestlevel]
         Vv = f.variables['v-component_of_wind_isobaric'][0][bestlevel]
         P = pref[bestlevel]
-        hnex = f.variables["Geopotential_height_isobaric"][0][bestlevel - 1][iTR][jTR];
+        hnex = f.variables["Geopotential_height_isobaric"][0][bestlevel - 1][iTR][jTR]
         if hnex < 0:
             hnex = 0.0
         # print([Vv[iTR][jTR], Vu[iTR][jTR], T[iTR][jTR], P,hnex])

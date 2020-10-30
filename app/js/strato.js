@@ -372,7 +372,7 @@ $(document).ready(function () {
 
                     socket.emit('simulate', {data: json});
 
-                    $('#simRunning_caption').html('شروغ شبیه ساز پرواز...');
+                    $('#simRunning_caption').html('شروغ شبیه‌ساز پرواز...');
                     $('#simRunning_progressBar').progressbar("value", 100);
 
                 } else if (json.status == '9999') {
