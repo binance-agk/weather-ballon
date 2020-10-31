@@ -110,7 +110,7 @@ $(document).ready(function () {
     // Load the event listener to manage zoom of heat maps
     google.maps.event.addListener(map, 'zoom_changed', function () {
         if ($('#view_heatmap').hasClass('selected_view')) {
-            heatmap.setOptions({radius: getNewHeatMapRadius()});
+            heatmap.setOptions({ radius: getNewHeatMapRadius() });
         }
     });
 
@@ -228,7 +228,7 @@ $(document).ready(function () {
     // Load Google's Autocomplete feature to search for cities
     // and bind the event to update lat/lon data and place the marker on the map.
     var input_google_search = document.getElementById('launchSite_search');
-    autocomplete = new google.maps.places.Autocomplete(input_google_search, {types: ['(cities)']});
+    autocomplete = new google.maps.places.Autocomplete(input_google_search, { types: ['(cities)'] });
     google.maps.event.addListener(autocomplete, 'place_changed', function () {
         clearOverlays();
         var place = autocomplete.getPlace();
@@ -367,10 +367,10 @@ $(document).ready(function () {
                 }
             }).done(function (json) {
                 if (json.status == 'ok') {
-                    $('#simRunning_caption').html('✅ داده هواشناسی قبلا بارگزاری شده...');
+                    $('#simRunning_caption').html('✅ داده هواشناسی قبلا بارگذاری شده...');
                     $('#simRunning_progressBar').progressbar("value", 100);
 
-                    socket.emit('simulate', {data: json});
+                    socket.emit('simulate', { data: json });
 
                     $('#simRunning_caption').html('شروغ شبیه‌ساز پرواز...');
                     $('#simRunning_progressBar').progressbar("value", 100);
@@ -378,18 +378,18 @@ $(document).ready(function () {
                 } else if (json.status == 'okbest') {
                     $('#simRunning_caption').html('شروغ شبیه‌ساز پرواز با داده reforecast...');
                     $('#simRunning_progressBar').progressbar("value", 100);
-                    socket.emit('simulatereforecast', {data: json});
+                    socket.emit('simulatereforecast', { data: json });
 
 
                 } else if (json.status == '9999') {
-                    $('#simRunning_caption').html('شروع بارگزاری داده موردنظر');
+                    $('#simRunning_caption').html('شروع بارگذاری داده موردنظر');
                     $('#simRunning_progressBar').progressbar("value", 0);
-                    socket.emit('dlevent', {data: json.date});
+                    socket.emit('dlevent', { data: json.date });
 
                 } else if (json.status == '8888') {
-                    $('#simRunning_caption').html('شروع بارگزاری از داده reforecast ');
+                    $('#simRunning_caption').html('شروع بارگذاری از داده reforecast ');
                     $('#simRunning_progressBar').progressbar("value", 0);
-                    socket.emit('dlbestevent', {data: json.date});
+                    socket.emit('dlbestevent', { data: json.date });
                 }
                 console.warn(json)
 
@@ -415,11 +415,17 @@ $(document).ready(function () {
         console.warn(msg)
         $('#simRunning_caption').html(msg.data);
         $('#simRunning_progressBar').progressbar("value", Number(100));
+        $("#options_menu").height(228);
         setTimeout(() => {
             $('#simRunning').removeClass('running');
             $('#simRunning').addClass('hidden');
             $('#simRunning_caption').html("شروغ شبیه‌ساز پرواز...");
+            $("#options_menu").height(28);
+
         }, 1000)
+        setTimeout(() => {
+            $("#options_menu").height(28);
+        }, 1500)
 
         // Show view options
         $('#options_menu').removeClass('hidden');
@@ -440,14 +446,14 @@ $(document).ready(function () {
     socket.on('progressEmitter', function (msg) {
         let per = (msg.data * 100 / 125908).toFixed(1)
         console.warn(msg)
-        $('#simRunning_caption').html((msg.data / 1024) + ' Mg ' + per + '%  بارگزاری شده...');
+        $('#simRunning_caption').html(per + '%  بارگذاری شده...');
         $('#simRunning_progressBar').progressbar("value", Number(per));
     });
 
     socket.on('progressbestEmitter', function (msg) {
         let per = (msg.data * 100 / 132001).toFixed(1)
         console.warn(msg)
-        $('#simRunning_caption').html((msg.data / 1024) + ' Mg ' + per + '%   reforecast بارگزاری ...');
+        $('#simRunning_caption').html(per + '%   reforecast بارگذاری ...');
         $('#simRunning_progressBar').progressbar("value", Number(per));
     });
     socket.on('errorEmitter', function (msg) {
@@ -511,7 +517,7 @@ $(document).ready(function () {
     $('#launchSite_pickbtn').click(function () {
         $('#launchSite_pickbtn').addClass('button_clicked');
         $('#launchSite_instruction').removeClass('hidden');
-        map.setOptions({draggableCursor: 'pointer'});
+        map.setOptions({ draggableCursor: 'pointer' });
         clearOverlays();
         google.maps.event.addListener(map, 'click', function (e) {
             placeMarker(e.latLng, map, 'Balloon Launch Site', '', '', 'launch');
@@ -520,7 +526,7 @@ $(document).ready(function () {
             getElevation(e.latLng, $('#launchSite_elev'));
 
             google.maps.event.clearListeners(map, 'click');
-            map.setOptions({draggableCursor: null});
+            map.setOptions({ draggableCursor: null });
             $('#launchSite_pickbtn').removeClass('button_clicked');
             $('#launchSite_instruction').addClass('hidden');
             updateCoords();
@@ -551,7 +557,7 @@ $(document).ready(function () {
         }
 
         heatmap.setMap(map);
-        heatmap.setOptions({radius: getNewHeatMapRadius()});
+        heatmap.setOptions({ radius: getNewHeatMapRadius() });
 
     });
 
