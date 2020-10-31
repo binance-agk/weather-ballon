@@ -137,7 +137,7 @@ $(document).ready(function () {
         altTimeFormat: "HH:mm",
         useLocalTimezone: false,
         altSeparator: " ",
-        minDate: -30,
+        minDate: -365,
         maxDate: +8,
         onSelect: function (selectedDate) {
             console.warn(selectedDate)
@@ -375,43 +375,26 @@ $(document).ready(function () {
                     $('#simRunning_caption').html('شروغ شبیه‌ساز پرواز...');
                     $('#simRunning_progressBar').progressbar("value", 100);
 
+                } else if (json.status == 'okbest') {
+                    $('#simRunning_caption').html('شروغ شبیه‌ساز پرواز با داده reforecast...');
+                    $('#simRunning_progressBar').progressbar("value", 100);
+                    socket.emit('simulatereforecast', {data: json});
+
+
                 } else if (json.status == '9999') {
                     $('#simRunning_caption').html('شروع بارگزاری داده موردنظر');
                     $('#simRunning_progressBar').progressbar("value", 0);
                     socket.emit('dlevent', {data: json.date});
+
+                } else if (json.status == '8888') {
+                    $('#simRunning_caption').html('شروع بارگزاری از داده reforecast ');
+                    $('#simRunning_progressBar').progressbar("value", 0);
+                    socket.emit('dlbestevent', {data: json.date});
                 }
                 console.warn(json)
 
 
             });
-
-
-            // Create timed function to request and update of the simulation progress
-            // and show it in the progress bar
-            function e() {
-                $.getJSON("get_data.php?f=progress", function (result) {
-                    if (result != null) {
-                        new_width = $('#simRunning_progressBar').width() * result.progress;
-                        $("#simRunning_progressBar .ui-progressbar-value").animate({width: new_width}, 300);
-                        if (result.action == 0) {
-                            $('#simRunning_caption').html('The simulation is running...');
-                            document.title = Math.ceil(result.progress * 100) + "% - ASTRA High Altitude Balloon Flight Planner";
-                            if (result.progress == 1) {
-                                $('#simRunning_caption').html('Done! Loading results...');
-                                setTimeout(function () {
-                                    load_data()
-                                }, 80000);
-                                // clearInterval(updater);
-                            }
-                        }
-                        if (result.action == 1)
-                            $('#simRunning_caption').html('Loading weather forecast');
-                        if (result.action == 2)
-                            $('#simRunning_caption').html('Initializing the simulation');
-                    }
-                });
-            }
-
 
         }
     });
@@ -432,8 +415,12 @@ $(document).ready(function () {
         console.warn(msg)
         $('#simRunning_caption').html(msg.data);
         $('#simRunning_progressBar').progressbar("value", Number(100));
-        $('#simRunning').removeClass('running');
-        $('#simRunning').addClass('hidden');
+        setTimeout(() => {
+            $('#simRunning').removeClass('running');
+            $('#simRunning').addClass('hidden');
+            $('#simRunning_caption').html("شروغ شبیه‌ساز پرواز...");
+        }, 1500)
+
         // Show view options
         $('#options_menu').removeClass('hidden');
     });
@@ -446,14 +433,21 @@ $(document).ready(function () {
         setTimeout(() => {
             $('#simRunning').removeClass('running');
             $('#simRunning').addClass('hidden');
-        }, 1000)
+        }, 1500)
     });
 
 
     socket.on('progressEmitter', function (msg) {
-        let per = (msg.data * 100 / 126000).toFixed(1)
+        let per = (msg.data * 100 / 125908).toFixed(1)
         console.warn(msg)
-        $('#simRunning_caption').html(per+ '%  بارگزاری شده...' );
+        $('#simRunning_caption').html((msg.data / 1024) + ' Mg ' + per + '%  بارگزاری شده...');
+        $('#simRunning_progressBar').progressbar("value", Number(per));
+    });
+
+    socket.on('progressbestEmitter', function (msg) {
+        let per = (msg.data * 100 / 132001).toFixed(1)
+        console.warn(msg)
+        $('#simRunning_caption').html((msg.data / 1024) + ' Mg ' + per + '%   reforecast بارگزاری ...');
         $('#simRunning_progressBar').progressbar("value", Number(per));
     });
     socket.on('errorEmitter', function (msg) {
@@ -813,7 +807,7 @@ function load_data() {
         $('#simRunning').removeClass('running');
         $('#simRunning').addClass('hidden');
         setTimeout(function () {
-            $('#simRunning_caption').html('Starting the simulation...')
+            $('#simRunning_caption').html('شروغ شبیه‌ساز پرواز...')
         }, 1000);
 
         // Show view options

@@ -22,7 +22,7 @@ from scipy.interpolate import Rbf
 # filename = files[ind]
 # f = netCDF4.Dataset(str(filename))
 MAXLAYERNUMBER = 31
-MAXLAYERNUMBER = 31
+MAXLAYERNUMBERReforecast = 34
 href = [48165.21, 42772.97, 39671.37, 35876.543, 33472.727, 31007.893, 26436.203, 23853.016, 20643.412, 18544.133,
         16327.822, 13822.03, 12068.036, 10653.013, 9439.774, 8373.583, 7419.694, 6556.828, 5765.28, 5031.6753,
         4349.6113, 3713.6584, 3117.0637, 2554.485, 2022.0889, 1520.427, 1050.7377, 823.6616, 601.1975, 310.89972,
@@ -33,9 +33,10 @@ pref = [100., 200., 300., 500., 700., 1000., 2000., 3000., 5000.,
         92500., 95000., 97500., 100000.]
 
 isobaric6 = (40.0, 100.0, 200.0, 300.0, 500.0, 700.0, 1000.0, 1500.0,
-         2000.0, 3000.0, 4000.0, 5000.0, 7000.0, 10000.0, 15000.0, 20000.0,
-          25000.0, 30000.0, 35000.0, 40000.0, 45000.0, 50000.0, 55000.0, 60000.0,
-           65000.0, 70000.0, 75000.0, 80000.0, 85000.0, 90000.0, 92500.0, 95000.0, 97500.0, 100000.0)
+             2000.0, 3000.0, 4000.0, 5000.0, 7000.0, 10000.0, 15000.0, 20000.0,
+             25000.0, 30000.0, 35000.0, 40000.0, 45000.0, 50000.0, 55000.0, 60000.0,
+             65000.0, 70000.0, 75000.0, 80000.0, 85000.0, 90000.0, 92500.0, 95000.0, 97500.0, 100000.0)
+
 
 def getclosest_ij(lats, lons, latpt, lonpt):
     # find squared distance of every point on grid
@@ -112,6 +113,12 @@ def getVariableRbf(f, varkey, lat0, lon0, h0, limitangle, limitinterpolateforlay
 
 
 # //get properties of atmosphere in interpolated levels for lat lon height point of the world
+def export(arg):
+    print("for export")
+    pass
+
+
+# @export
 def getTVPVariableRbf(f, lat0, lon0, h0, limitangle, limitinterpolateforlayer):
     # Temperature_isobaric(time, isobaric6, latitude, longitude)
     lat, lon = f.variables['lat'], f.variables['lon']
@@ -129,7 +136,7 @@ def getTVPVariableRbf(f, lat0, lon0, h0, limitangle, limitinterpolateforlayer):
     vv = []
     vu = []
     bestlevel = closest_isobariclevels_to(f, lats, lons, lat0, lon0, h0)
-    # print(bestlevel)
+    print(bestlevel)
     if limitinterpolateforlayer == 0:
         T = f.variables['Temperature_isobaric'][0][bestlevel]
         Vu = f.variables['u-component_of_wind_isobaric'][0][bestlevel]
@@ -192,28 +199,13 @@ def d9(f, var, lat0, lon0, h0, limitangle, limitinterpolateforlayer):
         return err.__str__()
 
 
-def ned(lat0, lon0, h0, limitangle, limitinterpolateforlayer):
-    try:
-        lat0, lon0, h0, limitangle, limitinterpolateforlayer = float(lat0), float(lon0), float(h0), int(
-            limitangle), int(limitinterpolateforlayer)
-        if lon0 < 0:
-            lon0 = 360 + lon0
-        rbf = getTVPVariableRbf(
-            f, lat0, lon0, h0, limitangle, limitinterpolateforlayer)
-
-        return str(rbf)
-    except MemoryError as err:
-        return err.__str__()
-
-
 def ned(f, lat0, lon0, h0, limitangle, limitinterpolateforlayer):
     try:
         lat0, lon0, h0, limitangle, limitinterpolateforlayer = float(lat0), float(lon0), float(h0), int(
             limitangle), int(limitinterpolateforlayer)
         if lon0 < 0:
             lon0 = 360 + lon0
-        rbf = getTVPVariableRbf(
-            f, lat0, lon0, h0, limitangle, limitinterpolateforlayer)
+        rbf = getTVPVariableRbf(f, lat0, lon0, h0, limitangle, limitinterpolateforlayer)
 
         return str(rbf)
     except MemoryError as err:
