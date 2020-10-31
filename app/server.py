@@ -265,6 +265,6 @@ def send_kml():
     return send_from_directory('', 'lmk.kml', cache_timeout=0)
 
 
-@app.route('/manifest.json')
+@app.route('/manifest')
 def manifes():
     return send_from_directory('', 'manifest.json', cache_timeout=0)

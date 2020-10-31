@@ -1,12 +1,12 @@
 {
-  "name": "ثاقب!",
-  "short_name": "ثاقب!",
-  "description": "شبیه‌ساز پرواز بالن ثاقبr",
+  "name": "!ثاقب",
+  "short_name": "!ثاقب",
+  "description": "شبیه‌ساز پرواز بالن ثاقب",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#09DF70",
   "scope": "/",
-  "theme_color": "#1A73E8",
+  "theme_color": "#e8e1dc",
   "lang": "en",
   "android_package_name": "com.google.android.apps.maps",
   "icons": [

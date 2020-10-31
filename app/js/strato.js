@@ -419,7 +419,7 @@ $(document).ready(function () {
             $('#simRunning').removeClass('running');
             $('#simRunning').addClass('hidden');
             $('#simRunning_caption').html("شروغ شبیه‌ساز پرواز...");
-        }, 1500)
+        }, 1000)
 
         // Show view options
         $('#options_menu').removeClass('hidden');
