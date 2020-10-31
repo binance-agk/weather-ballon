@@ -6,3 +6,4 @@
 **/*.grib2
 **/__pycache__
 **/*.pyc
+*.exe

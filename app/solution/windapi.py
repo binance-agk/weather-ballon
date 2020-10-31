@@ -223,3 +223,6 @@ def d9(var, lat0, lon0, h0, limitangle, limitinterpolateforlayer):
         return str(rbf)
     except Exception as err:
         return err.__str__()
+
+import os 
+os.system('start http://localhost:5000')
