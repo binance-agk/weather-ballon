@@ -12,7 +12,7 @@
 
   ;Name and file
   Name "Sagheb"
-  OutFile "Sagheb-1.2-setup.exe"
+  OutFile "Sagheb-1.0-setup.exe"
 
   ;Default installation folder
   InstallDir "$PROGRAMFILES\Sagheb-1.0"
@@ -70,7 +70,7 @@ Section "core"
   
   ;ADD YOUR OWN FILES HERE...
   ; Put file there
-  File /r "G:\apps\balloon\app\*"
+  File /r  /x *.nc  "app\*"
   ;File /r "\*"
   
   ;Store installation folder

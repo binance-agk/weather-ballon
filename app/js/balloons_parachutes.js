@@ -30,7 +30,7 @@ var balloons = {
     	"TX1000" : "TX1000 (1kg)",
     	"TX1200" : "TX1200 (1.2kg)",
     	"TX2000" : "TX2000 (2kg)",
-    	"TX3000" : "TA3000 (3kg)",
+    	"TX3000" : "TX3000 (3kg)",
      },
     //  "Hwoyee" : {
     // 	"HW10" : "Hwoyee 10g",

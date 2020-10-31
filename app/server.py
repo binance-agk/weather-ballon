@@ -30,7 +30,7 @@ def llp(message):
 @socketio.on('after connect')
 def afterconnect(message):
     print("hey connect in flask here")
-    emit('my event', {'data': 'Lets dance'})
+    emit('my event', {'data': 'Lets go?!thanks lets py'})
 
 
 @socketio.on('dlevent')
@@ -58,7 +58,7 @@ def simulate(message):
     def parachuteEmitter(msg):
         return emit('parachuteEmitter', {'data': msg})
 
-    def flightdoneemmitee(msg):
+    def flightdoneemmiter(msg):
         return emit('flightdoneemmiter', {'data': msg})
 
     print('king message: ', message)
@@ -78,7 +78,7 @@ def simulate(message):
     filename = "data/GFS_Global_0p5deg_ana_{0}{1}{2}_{3}00.grib2.nc" \
         .format(date['year'], date['month'], date['day'], date['hour'])
 
-    sol = Solution(anyerroremmiter, balloonEmitter, parachuteEmitter, flightdoneemmitee, lat, lon, date['day'],
+    sol = Solution(anyerroremmiter, balloonEmitter, parachuteEmitter, flightdoneemmiter, lat, lon, date['day'],
                    date['month'], date['year'], date['hour'],
                    0, filename, gasType, blntype, payloadweight, chutetype, nozzlelift, 22000, 15000)
 
@@ -124,11 +124,6 @@ def helloWorld():
                          'nozzlelift': nozzlelift, 'payloadweight': payloadweight, 'chutetype': chutetype}
                 }
     else:
-        xdate = datetime.datetime.now()
-        if xdate.month == int(month) and xdate.day == int(day):
-            print('yes same')
-        print(xdate)
-
         return {'status': '9999', 'description': 'file not exists,start request download',
                 'date': {'year': year, 'month': month, 'day': day, 'hour': hour}}
 

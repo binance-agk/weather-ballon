@@ -293,7 +293,7 @@ class Solution(object):
             F'</Placemark>\n ')
         f.write(
             F'<Placemark>\n<name>Balloon Burst</name>\n<description>Balloon Burst at {latb:.6f}, '
-            F'{lonb:.6f}</description>\n<Point><coordinates> {lonb:.6f},{latb:.6f},{hb:.6f}</coordinates></Point>\n'
+            F'{lonb:.6f} at {hb:.1f}m</description>\n<Point><coordinates> {lonb:.6f},{latb:.6f},{hb:.6f}</coordinates></Point>\n'
             F'</Placemark>\n ')
         f.write(
             F'<Placemark>\n<name>Balloon Landing</name>\n<description>Landing at {lat:.6f}, '

@@ -453,7 +453,7 @@ $(document).ready(function () {
     socket.on('progressEmitter', function (msg) {
         let per = (msg.data * 100 / 126000).toFixed(1)
         console.warn(msg)
-        $('#simRunning_caption').html('%  بارگزاری شده...' + per);
+        $('#simRunning_caption').html(per+ '%  بارگزاری شده...' );
         $('#simRunning_progressBar').progressbar("value", Number(per));
     });
     socket.on('errorEmitter', function (msg) {
