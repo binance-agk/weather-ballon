@@ -136,7 +136,7 @@ def getTVPVariableRbf(f, lat0, lon0, h0, limitangle, limitinterpolateforlayer):
     vv = []
     vu = []
     bestlevel = closest_isobariclevels_to(f, lats, lons, lat0, lon0, h0)
-    print(bestlevel)
+    # print(bestlevel)
     if limitinterpolateforlayer == 0:
         T = f.variables['Temperature_isobaric'][0][bestlevel]
         Vu = f.variables['u-component_of_wind_isobaric'][0][bestlevel]

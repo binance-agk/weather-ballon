@@ -50,12 +50,16 @@ class Solution(object):
             'TA2000', 'TA3000', 'TX800', 'TX1000', 'TX1200', 'TX2000', 'TX3000')
         self.balloontypeindex = bname.index(self.balloontype)
 
-        mbs = [200, 300, 350, 450, 500, 600, 700, 800, 1000, 1200, 1500, 2000, 3000, 800, 1000, 1200, 2000, 3000]
+        mbs = [200, 300, 350, 450, 500, 600, 700, 800, 1000,
+               1200, 1500, 2000, 3000, 800, 1000, 1200, 2000, 3000]
         mbs = list(map(lambda x: x / 1000.0, mbs))
-        mps = [250, 250, 250, 250, 250, 250, 250, 250, 250, 1050, 1050, 1050, 1050, 250, 250, 1050, 1050, 1050]
+        mps = [250, 250, 250, 250, 250, 250, 250, 250, 250,
+               1050, 1050, 1050, 1050, 250, 250, 1050, 1050, 1050]
         mps = list(map(lambda x: x / 1000.0, mps))
-        vol0s = [.83, .97, 1.03, 1.16, 1.22, 1.5, 1.63, .76, 2.01, 2.99, 3.33, 3.89, 4.97, 1.76, 2.01, 2.99, 3.89, 4.97]
-        dbs = [300, 378, 412, 472, 499, 605, 653, 700, 786, 863, 944, 1054, 1300, 738, 828, 910, 1079, 1331]
+        vol0s = [.83, .97, 1.03, 1.16, 1.22, 1.5, 1.63, .76, 2.01,
+                 2.99, 3.33, 3.89, 4.97, 1.76, 2.01, 2.99, 3.89, 4.97]
+        dbs = [300, 378, 412, 472, 499, 605, 653, 700, 786,
+               863, 944, 1054, 1300, 738, 828, 910, 1079, 1331]
         dbs = list(map(lambda x: x / 100.0, dbs))
 
         print(bname[self.balloontypeindex])
@@ -77,7 +81,8 @@ class Solution(object):
         self.Told = 100
 
     def dXdt(self, t, x):
-        (lat, lon, h) = pm.ned2geodetic(x[0], x[1], x[2], self.lat0, self.lon0, self.h0)
+        (lat, lon, h) = pm.ned2geodetic(
+            x[0], x[1], x[2], self.lat0, self.lon0, self.h0)
         # print((lat,lon,h))
         if abs(h) >= self.hnext:
             resp = self.windapi.ned(self.netcfd4, lat, lon, h, 0, 0)
@@ -204,7 +209,8 @@ class Solution(object):
         t0 = self.T[iend]
         k = 0
         while abs(h) > 40:
-            (lat, lon, h) = pm.ned2geodetic(x[k, 0], x[k, 1], x[k, 2], self.lat0, self.lon0, self.h0)
+            (lat, lon, h) = pm.ned2geodetic(
+                x[k, 0], x[k, 1], x[k, 2], self.lat0, self.lon0, self.h0)
             if (k - 1) % 100 == 0:
                 resp = self.windapi.ned(self.netcfd4, lat, lon, h, 0, 0)
                 resp = ast.literal_eval(resp)
@@ -236,7 +242,7 @@ class Solution(object):
             self.vxwold = vxw
             self.vywold = vyw
 
-        self.flightdoneemmiter('فرود و پایان پرواز...')
+        self.flightdoneemmiter((lat, lon, 'فرود و پایان پرواز...'))
         self.kend = k
         self.Xpar = x
         return self.Tpar, self.Xpar
@@ -246,7 +252,8 @@ class Solution(object):
         x0 = 0
         y0 = 0
         z0 = 0
-        t, y = self.rk4(self.dXdt, 0, self.endtime, [x0, y0, z0, 0, 0, 0], self.iternumber)
+        t, y = self.rk4(self.dXdt, 0, self.endtime, [
+                        x0, y0, z0, 0, 0, 0], self.iternumber)
         return t, y
 
     def exportKML(self):
@@ -269,7 +276,8 @@ class Solution(object):
             '<tessellate>1</tessellate>\n        <extrude>1</extrude>\n        <altitudeMode>absolute</altitudeMode>\n    '
             '    <coordinates>\n')
         for i in range(0, self.iend, 100):
-            (lat, lon, h) = pm.ned2geodetic(self.Y[i, 0], self.Y[i, 1], self.Y[i, 2], self.lat0, self.lon0, self.h0)
+            (lat, lon, h) = pm.ned2geodetic(
+                self.Y[i, 0], self.Y[i, 1], self.Y[i, 2], self.lat0, self.lon0, self.h0)
             f.write(F'{lon:.6f},{lat:.6f},{h:.6f}\n')
 
         (latb, lonb, hb) = pm.ned2geodetic(self.Y[self.iend, 0], self.Y[self.iend, 1], self.Y[self.iend, 2], self.lat0,
@@ -296,7 +304,7 @@ class Solution(object):
             F'{lonb:.6f} at {hb:.1f}m</description>\n<Point><coordinates> {lonb:.6f},{latb:.6f},{hb:.6f}</coordinates></Point>\n'
             F'</Placemark>\n ')
         f.write(
-            F'<Placemark>\n<name>Balloon Landing</name>\n<description>Landing at {lat:.6f}, '
+            F'<Placemark>\n<name>Landing</name>\n<description>Landing at {lat:.6f}, '
             F'{lon:.6f}</description>\n<Point><coordinates> {lon:.6f},{lat:.6f},{h:.6f}</coordinates></Point>\n'
             F'</Placemark>\n ')
         f.write('  </Document>\n</kml>\n')

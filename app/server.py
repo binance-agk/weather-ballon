@@ -7,7 +7,9 @@ from flask_cors import CORS
 from flask_socketio import SocketIO, emit
 from datetime import datetime
 from dateutil import tz
-
+import logging
+log = logging.getLogger('werkzeug')
+log.setLevel(logging.ERROR)
 from solution.downlaodapi import Dl
 from solution.solution import Solution
 

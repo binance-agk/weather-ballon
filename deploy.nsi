@@ -12,10 +12,10 @@
 
   ;Name and file
   Name "Sagheb"
-  OutFile "Sagheb-1.0-setup.exe"
+  OutFile "Sagheb-setup.exe"
 
   ;Default installation folder
-  InstallDir "$PROGRAMFILES\Sagheb-1.0"
+  InstallDir "$PROGRAMFILES\Sagheb"
   
   ;Get installation folder from registry if available
   InstallDirRegKey HKCU "Software\Sagheb" ""

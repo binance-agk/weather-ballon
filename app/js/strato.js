@@ -413,7 +413,7 @@ $(document).ready(function () {
     });
     socket.on('flightdoneemmiter', function (msg) {
         console.warn(msg)
-        $('#simRunning_caption').html(msg.data);
+        $('#simRunning_caption').html(msg.data[2]);
         $('#simRunning_progressBar').progressbar("value", Number(100));
         $("#options_menu").height(228);
         setTimeout(() => {
@@ -422,7 +422,7 @@ $(document).ready(function () {
             $('#simRunning_caption').html("شروغ شبیه‌ساز پرواز...");
             $("#options_menu").height(28);
 
-        }, 1000)
+        }, 1300)
         setTimeout(() => {
             $("#options_menu").height(28);
         }, 1500)

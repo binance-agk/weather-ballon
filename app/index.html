@@ -594,6 +594,22 @@
 
 </script>
 
+
+<script src="https://npmcdn.com/@turf/turf@5.1.6/turf.min.js"></script>
+
+<script>
+    lat =36
+    lng=54
+    var to = [lng, lat] //lng, lat
+      var from = [lat, lng] //lng, lat 
+      
+      var options = {
+        units: 'kilometers'
+      }; // units can be degrees, radians, miles, or kilometers,
+    var distance = turf.distance(to, from, options);    
+    console.log(distance.toFixed(6));
+</script>
+
 </body>
 
 </html>
